@@ -1,0 +1,455 @@
+/* ==========================================================
+   CASE ORDERS SLIDER (Moving Left to Right)
+   ========================================================== */
+
+.case-orders-section {
+  background-color: #f7f9fb;
+  position: relative;
+  padding: 80px 0;
+  overflow: hidden;
+  border-top: 1px solid #eef2f6;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.case-orders-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 15px 0 25px 0;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+/* Track moving continuously from LEFT TO RIGHT */
+.case-orders-track {
+  display: flex;
+  gap: 25px;
+  width: max-content;
+  animation: scrollOrderLtr 35s linear infinite;
+  will-change: transform;
+}
+
+/* Pause slider smoothly when user hovers */
+.case-orders-track:hover {
+  animation-play-state: paused;
+}
+
+/* LEFT TO RIGHT Animation: Starts from -50% and scrolls to 0% */
+@keyframes scrollOrderLtr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Card Styling */
+.case-order-card {
+  width: 320px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.case-order-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(196, 155, 99, 0.18);
+  border-color: #c49b63;
+}
+
+.case-order-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.case-order-img-box {
+  position: relative;
+  height: 175px;
+  width: 100%;
+  overflow: hidden;
+  background: #1e242b;
+}
+
+.case-order-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.case-order-card:hover .case-order-img {
+  transform: scale(1.06);
+}
+
+.case-order-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #c49b63;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.case-order-content {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.case-order-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 44px;
+}
+
+.case-order-meta {
+  margin-bottom: 8px;
+}
+
+.case-order-name {
+  font-size: 13px;
+  color: #495057;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.case-order-name i {
+  color: #c49b63;
+  font-size: 15px;
+  margin-right: 6px;
+}
+
+.case-order-desc {
+  font-size: 13px;
+  color: #6c757d;
+  line-height: 1.45;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.case-order-action {
+  margin-top: auto;
+}
+
+.order-pdf-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #c49b63;
+  border: 1px solid #c49b63;
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+  width: 100%;
+  box-shadow: 0 3px 8px rgba(196, 155, 99, 0.25);
+}
+
+.order-pdf-btn:hover {
+  background-color: #b0874e;
+  border-color: #b0874e;
+  color: #ffffff !important;
+  box-shadow: 0 6px 14px rgba(196, 155, 99, 0.4);
+  transform: translateY(-1px);
+}
+
+.order-pdf-btn i {
+  font-size: 15px;
+}
+
+/* ========================================================
+   PRACTICE AREA SECTION — PREMIUM REDESIGN
+   ======================================================== */
+
+.pa-section {
+  background: linear-gradient(170deg, #0b1120 0%, #111c2e 55%, #0e1826 100%);
+  padding: 90px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background faint decorative circles */
+.pa-bg-deco {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.pa-bg-deco--left {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -140px;
+  background: radial-gradient(circle, rgba(196, 155, 99, 0.1) 0%, transparent 70%);
+}
+.pa-bg-deco--right {
+  width: 380px;
+  height: 380px;
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(52, 98, 172, 0.1) 0%, transparent 70%);
+}
+
+/* ---- Section Heading ---- */
+.pa-subheading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(196, 155, 99, 0.13);
+  color: #dfb77d;
+  border: 1px solid rgba(196, 155, 99, 0.35);
+  padding: 6px 20px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.pa-subheading i {
+  color: #dfb77d;
+}
+
+.pa-heading {
+  font-size: 42px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+.pa-heading .pa-gold {
+  color: #dfb77d;
+  background: linear-gradient(90deg, #dfb77d 0%, #f4d08e 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pa-heading-line {
+  width: 65px;
+  height: 4px;
+  background: linear-gradient(90deg, #c49b63, #f4d08e);
+  border-radius: 4px;
+  margin: 0 auto 18px;
+}
+
+.pa-heading-desc {
+  font-size: 15px;
+  color: #94a3b8;
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ---- Card ---- */
+.pa-card {
+  background: #141e30;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(196, 155, 99, 0.18);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  transition: transform 0.38s ease, box-shadow 0.38s ease, border-color 0.38s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.pa-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 25px rgba(196, 155, 99, 0.14);
+  border-color: rgba(196, 155, 99, 0.5);
+}
+
+/* Image box */
+.pa-card-img-box {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #0b1120;
+}
+.pa-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.pa-card:hover .pa-card-img {
+  transform: scale(1.1);
+}
+
+/* Gradient overlay on image */
+.pa-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 17, 32, 0.25) 0%,
+    rgba(11, 17, 32, 0.7) 100%
+  );
+  pointer-events: none;
+}
+
+/* Number badge (top-left) */
+.pa-card-number {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 30px;
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 1;
+  letter-spacing: -1px;
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.35s ease;
+}
+.pa-card:hover .pa-card-number {
+  color: rgba(196, 155, 99, 0.35);
+}
+
+/* Card body */
+.pa-card-body {
+  padding: 24px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+/* Gold top accent bar */
+.pa-card-accent {
+  position: absolute;
+  top: 0;
+  left: 22px;
+  width: 38px;
+  height: 3px;
+  background: linear-gradient(90deg, #c49b63, #f4d08e);
+  border-radius: 0 0 4px 4px;
+  transition: width 0.35s ease;
+}
+.pa-card:hover .pa-card-accent {
+  width: 70px;
+}
+
+/* Icon circle */
+.pa-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(196, 155, 99, 0.12);
+  border: 1px solid rgba(196, 155, 99, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dfb77d;
+  font-size: 18px;
+  margin-bottom: 14px;
+  margin-top: 12px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.pa-card:hover .pa-card-icon {
+  background: #c49b63;
+  color: #ffffff;
+}
+
+/* Title */
+.pa-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+.pa-card:hover .pa-card-title {
+  color: #dfb77d;
+}
+
+/* Description */
+.pa-card-desc {
+  font-size: 13.5px;
+  color: #94a3b8;
+  line-height: 1.65;
+  flex-grow: 1;
+  margin-bottom: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* CTA Button */
+.pa-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #dfb77d !important;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 9px 0;
+  border-top: 1px solid rgba(196, 155, 99, 0.2);
+  transition: gap 0.25s ease, color 0.25s ease;
+  width: fit-content;
+}
+.pa-card-btn i {
+  font-size: 13px;
+  transition: transform 0.25s ease;
+}
+.pa-card-btn:hover {
+  color: #f4d08e !important;
+  gap: 14px;
+  text-decoration: none !important;
+}
+.pa-card-btn:hover i {
+  transform: translateX(4px);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1199px) {
+  .pa-card-img-box { height: 200px; }
+}
+@media (max-width: 991px) {
+  .pa-section { padding: 65px 0 55px; }
+  .pa-heading { font-size: 34px; }
+}
+@media (max-width: 576px) {
+  .pa-heading { font-size: 28px; }
+  .pa-card-img-box { height: 190px; }
+  .pa-section { padding: 50px 0 40px; }
+}
+

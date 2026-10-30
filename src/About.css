@@ -1,0 +1,503 @@
+/* ========================================================
+   ABOUT US PAGE STYLES (src/About.css)
+   Sarbit Legal Law Firm — Dedicated Law Firm Profile
+   ======================================================== */
+
+/* Hero Banner */
+.about-hero {
+  position: relative;
+  min-height: 340px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 85px 0 65px;
+  color: #ffffff;
+}
+
+.about-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(14, 28, 47, 0.95) 0%, rgba(26, 43, 76, 0.9) 100%);
+  z-index: 1;
+}
+
+.about-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.about-breadcrumbs {
+  font-size: 13.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #c49b63;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.about-breadcrumbs a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.about-breadcrumbs a:hover {
+  color: #c49b63;
+}
+
+.about-hero-title {
+  font-size: 44px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.about-hero-title span {
+  color: #c49b63;
+}
+
+.about-hero-desc {
+  font-size: 16px;
+  color: #cbd5e1;
+  max-width: 720px;
+  line-height: 1.65;
+}
+
+/* Stats Counter Strip */
+.about-stats-strip {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  padding: 24px 0;
+}
+
+.about-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+}
+
+.about-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(196, 155, 99, 0.12);
+  color: #c49b63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.about-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0e1c2f;
+  line-height: 1.2;
+}
+
+.about-stat-label {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+/* Main Content Sections */
+.about-section {
+  padding: 80px 0;
+}
+
+.about-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(196, 155, 99, 0.12);
+  color: #9a7340;
+  border: 1px solid rgba(196, 155, 99, 0.35);
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.about-section-heading {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0e1c2f;
+  margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.25;
+}
+
+.about-section-heading span {
+  color: #c49b63;
+}
+
+.about-gold-divider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #c49b63, #f4d08e);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.about-gold-divider.center {
+  margin: 0 auto 20px;
+}
+
+/* Founder / Firm Intro Section */
+.about-intro-img-box {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+}
+
+.about-intro-img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.about-intro-img-box:hover .about-intro-img {
+  transform: scale(1.03);
+}
+
+.about-floating-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(14, 28, 47, 0.92);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 16px 22px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(196, 155, 99, 0.45);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  max-width: 250px;
+}
+
+.about-floating-badge .exp-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffd700;
+  line-height: 1;
+}
+
+.about-floating-badge .exp-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+/* Quote box */
+.about-quote-box {
+  background: #fffdf5;
+  border-left: 4px solid #c49b63;
+  padding: 18px 22px;
+  border-radius: 0 12px 12px 0;
+  margin: 22px 0;
+}
+
+.about-quote-box p {
+  font-style: italic;
+  color: #4a5568;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.about-quote-box .author {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0e1c2f;
+}
+
+/* Practice Pillars */
+.about-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 40px;
+}
+
+.about-pillar-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 24px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+  border: 1.5px solid #e2e8f0;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-pillar-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(196, 155, 99, 0.4);
+  border-color: rgba(196, 155, 99, 0.5);
+}
+
+.about-pillar-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #c49b63, #f4d08e);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-pillar-card:hover::before {
+  opacity: 1;
+}
+
+.about-pillar-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: rgba(196, 155, 99, 0.12);
+  color: #c49b63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.about-pillar-card:hover .about-pillar-icon {
+  background: #c49b63;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.about-pillar-card h4 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0e1c2f;
+  margin-bottom: 12px;
+}
+
+.about-pillar-card p {
+  color: #64748b;
+  font-size: 13.5px;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+/* Work Process Roadmap */
+.about-process-section {
+  background: linear-gradient(135deg, #0e1c2f 0%, #162438 100%);
+  color: #ffffff;
+  padding: 85px 0;
+}
+
+.about-process-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(196, 155, 99, 0.25);
+  border-radius: 18px;
+  padding: 32px 24px;
+  height: 100%;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.about-process-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #c49b63;
+  transform: translateY(-6px);
+}
+
+.about-process-step {
+  font-size: 40px;
+  font-weight: 900;
+  color: rgba(196, 155, 99, 0.3);
+  line-height: 1;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.about-process-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(196, 155, 99, 0.18);
+  color: #ffd700;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.about-process-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.about-process-card p {
+  font-size: 13.5px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Values Section */
+.about-values-section {
+  background: #f8fafc;
+  padding: 80px 0;
+}
+
+.about-value-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.about-value-box:hover {
+  border-color: #c49b63;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.about-value-box h5 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0e1c2f;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-value-box h5 i {
+  color: #c49b63;
+}
+
+.about-value-box p {
+  font-size: 13.5px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Bottom CTA Banner */
+.about-cta-banner {
+  background: linear-gradient(135deg, #1a2b4c 0%, #0e1c2f 100%);
+  border-radius: 20px;
+  padding: 50px 40px;
+  color: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(196, 155, 99, 0.35);
+  position: relative;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+.about-cta-banner::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 155, 99, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-cta-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.about-cta-title span {
+  color: #c49b63;
+}
+
+.about-cta-desc {
+  font-size: 15px;
+  color: #cbd5e1;
+  max-width: 620px;
+  margin-bottom: 0;
+}
+
+.about-cta-btn {
+  background: linear-gradient(135deg, #c49b63 0%, #a07840 100%);
+  color: #ffffff !important;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 20px rgba(196, 155, 99, 0.4);
+  transition: all 0.3s ease;
+}
+
+.about-cta-btn:hover {
+  background: linear-gradient(135deg, #d3aa70 0%, #b88d51 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(196, 155, 99, 0.55);
+}
+
+.about-cta-btn-outline {
+  background: transparent;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.about-cta-btn-outline:hover {
+  border-color: #c49b63;
+  color: #c49b63 !important;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .about-hero-title { font-size: 32px; }
+  .about-section-heading { font-size: 28px; }
+  .about-cta-banner { padding: 35px 24px; text-align: center; }
+  .about-cta-actions { justify-content: center !important; margin-top: 20px; }
+  .about-intro-img { height: 380px; }
+}

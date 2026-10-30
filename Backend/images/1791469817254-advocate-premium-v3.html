@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Chambers | Premium Advocate Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- React and Babel for Live Demo -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .font-serif {
+            font-family: 'Cinzel', serif;
+        }
+        .gold-grad-text {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-glow:hover {
+            border-color: #bf953f;
+            box-shadow: 0 0 15px rgba(191, 149, 63, 0.2);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bf953f;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // --- React Component Implementation ---
+
+        function AdvocateWebsite() {
+            // States for Interactive Features
+            const [activeTab, setActiveTab] = React.useState('all');
+            const [activeTestimonial, setActiveTestimonial] = React.useState(0);
+            const [formData, setFormData] = React.useState({ name: '', email: '', phone: '', caseType: '', message: '' });
+            const [formSubmitted, setFormSubmitted] = React.useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
+            // Mock Data
+            const practiceAreas = [
+                { id: 'corp', icon: 'fa-building', title: 'Corporate Law', desc: 'Mergers, acquisitions, compliance, and premium legal advisory for elite businesses.', cat: 'civil' },
+                { id: 'crim', icon: 'fa-gavel', title: 'Criminal Defense', desc: 'High-profile litigation, white-collar crimes, and aggressive courtroom representation.', cat: 'criminal' },
+                { id: 'prop', icon: 'fa-signature', title: 'Property & Real Estate', desc: 'High-value asset disputes, due diligence, commercial leasing, and structural settlements.', cat: 'civil' },
+                { id: 'fam', icon: 'fa-users', title: 'Family & Matrimonial', desc: 'Discreet and calculated handling of asset division, high-net-worth divorce, and child custody.', cat: 'civil' },
+                { id: 'ip', icon: 'fa-shield-halved', title: 'Intellectual Property', desc: 'Trademark protection, patent disputes, and global copyright enforcement frameworks.', cat: 'cyber' },
+                { id: 'cyber', icon: 'fa-laptop-code', title: 'Cyber & White Collar', desc: 'Data privacy breach defenses, fintech fraud litigation, and digital corporate assets compliance.', cat: 'cyber' }
+            ];
+
+            const testimonials = [
+                { name: "Vikram Malhotra", role: "CEO, NexaCorp Global", text: "Unmatched strategic legal counsel. Their high-stakes corporate restructuring defense saved our firm billions in liabilities. Absolute authority in the courtroom." },
+                { name: "Dr. Ananya Rai", role: "Director, Apex Diagnostics", text: "We faced a major structural property litigation. The calculated approach, deep research, and precise cross-examination secured a complete victory for us." },
+                { name: "Rohan Singhania", role: "Founder, Singhania Ventures", text: "Very professional, highly accessible, and exceptionally sharp. They deal with cases like a grandmaster playing chess. Highly recommended." }
+            ];
+
+            const stats = [
+                { number: "15+", label: "Years of Excellence" },
+                { number: "98%", label: "Case Success Rate" },
+                { number: "450+", label: "Corporate Clients" },
+                { number: "1.2B+", label: "Recovered Damages" }
+            ];
+
+            // Filter Practice Areas
+            const filteredPractices = activeTab === 'all' 
+                ? practiceAreas 
+                : practiceAreas.filter(p => p.cat === activeTab);
+
+            // Handle Form Submit
+            const handleForm = (e) => {
+                e.preventDefault();
+                if(formData.name && formData.email) {
+                    setFormSubmitted(true);
+                    setTimeout(() => {
+                        setFormSubmitted(false);
+                        setFormData({ name: '', email: '', phone: '', caseType: '', message: '' });
+                    }, 5000);
+                }
+            };
+
+            return (
+                <div className="min-h-screen bg-[#070a12] text-gray-100 flex flex-col justify-between selection:bg-[#bf953f] selection:text-black">
+                    
+                    {/* --- HEADER/NAVBAR --- */}
+                    <header className="sticky top-0 z-50 bg-[#070a12]/90 backdrop-blur-md border-b border-gray-800/60 transition-all">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 border-2 border-[#bf953f] flex items-center justify-center transform rotate-45 hover:rotate-180 transition-transform duration-500 bg-gray-950">
+                                    <i className="fa-solid fa-scale-balanced text-[#bf953f] transform -rotate-45"></i>
+                                </div>
+                                <span className="font-serif text-xl font-bold tracking-widest text-white">LEX<span className="gold-grad-text">ELITE</span></span>
+                            </div>
+                            
+                            {/* Desktop Nav */}
+                            <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+                                <a href="#hero" className="hover:text-[#bf953f] text-gray-300 transition-colors">Home</a>
+                                <a href="#about" className="hover:text-[#bf953f] text-gray-300 transition-colors">About</a>
+                                <a href="#practices" className="hover:text-[#bf953f] text-gray-300 transition-colors">Practice Areas</a>
+                                <a href="#stats" className="hover:text-[#bf953f] text-gray-300 transition-colors">Track Record</a>
+                                <a href="#testimonials" className="hover:text-[#bf953f] text-gray-300 transition-colors">Testimonials</a>
+                            </nav>
+
+                            <div className="hidden md:block">
+                                <a href="#consultation" className="px-5 py-2.5 border border-[#bf953f] text-[#bf953f] text-xs font-semibold tracking-widest uppercase hover:bg-[#bf953f] hover:text-black transition-all duration-300 rounded-sm">
+                                    Book Consultation
+                                </a>
+                            </div>
+
+                            {/* Mobile Hamburger */}
+                            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-gray-400 hover:text-white focus:outline-none">
+                                <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'} text-xl`}></i>
+                            </button>
+                        </div>
+
+                        {/* Mobile Dropdown */}
+                        {mobileMenuOpen && (
+                            <div className="md:hidden bg-[#0b0f19] border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
+                                <a href="#hero" onClick={()=>setMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-[#bf953f]">Home</a>
+                                <a href="#about" onClick={()=>setMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-[#bf953f]">About</a>
+                                <a href="#practices" onClick={()=>setMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-[#bf953f]">Practice Areas</a>
+                                <a href="#stats" onClick={()=>setMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-[#bf953f]">Track Record</a>
+                                <a href="#testimonials" onClick={()=>setMobileMenuOpen(false)} className="block py-2 text-gray-300 hover:text-[#bf953f]">Testimonials</a>
+                                <a href="#consultation" onClick={()=>setMobileMenuOpen(false)} className="block text-center bg-[#bf953f] text-black py-2.5 font-semibold text-sm rounded-sm">Book Consultation</a>
+                            </div>
+                        )}
+                    </header>
+
+                    {/* --- HERO SECTION --- */}
+                    <section id="hero" className="relative pt-12 pb-24 md:pt-20 md:pb-32 flex items-center overflow-hidden border-b border-gray-900">
+                        <div className="absolute inset-0 opacity-10 pointer-events-none">
+                            <div className="absolute top-10 right-10 w-96 h-96 bg-[#bf953f] rounded-full blur-3xl"></div>
+                            <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-900 rounded-full blur-3xl"></div>
+                        </div>
+
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-900/80 border border-gray-800 rounded-full text-xs font-medium tracking-wide text-gray-400">
+                                    <i className="fa-solid fa-circle-check text-[#bf953f] text-[10px]"></i> Supreme Court & High Court Litigators
+                                </div>
+                                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                                    Defending Corporate Rights. <br/>
+                                    <span className="gold-grad-text">Securing Absolute Justice.</span>
+                                </h1>
+                                <p className="text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                                    Elite Legal Chambers provides aggressive representation, rigorous legal architecture, and sophisticated risk mitigation frameworks for ultra-high-net-worth clients and corporations.
+                                </p>
+                                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                                    <a href="#consultation" className="w-full sm:w-auto px-8 py-4 bg-[#bf953f] text-black font-bold tracking-wider text-xs uppercase hover:bg-[#e2b458] transition-all rounded-sm shadow-lg shadow-[#bf953f]/10">
+                                        Request Free Case Assessment
+                                    </a>
+                                    <a href="#practices" className="w-full sm:w-auto px-8 py-4 border border-gray-700 text-white font-bold tracking-wider text-xs uppercase hover:bg-gray-900 transition-all rounded-sm">
+                                        Explore Strategy Expertise
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div className="lg:col-span-5 relative flex justify-center">
+                                <div className="relative border border-gray-800 p-4 bg-gray-950/40 rounded-sm w-full max-w-sm">
+                                    <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-[#bf953f]"></div>
+                                    <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-[#bf953f]"></div>
+                                    <div className="h-[400px] w-full bg-gradient-to-b from-gray-900 to-gray-950 flex flex-col justify-end p-6 border border-gray-800 relative overflow-hidden">
+                                        <div className="absolute inset-0 flex items-center justify-center opacity-5">
+                                            <i className="fa-solid fa-scale-unbalanced text-[200px]"></i>
+                                        </div>
+                                        <div className="relative z-10 space-y-2">
+                                            <h3 className="font-serif text-2xl font-bold text-white">Adv. Raghavendra S.</h3>
+                                            <p className="text-xs tracking-widest text-[#bf953f] uppercase font-semibold">Senior Managing Partner</p>
+                                            <div className="h-px bg-gradient-to-r from-[#bf953f] to-transparent my-3"></div>
+                                            <p className="text-gray-400 text-xs italic font-light">"Law is not just about rules. It is about architectural domination and unmatched chess positioning."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- STATS SECTION --- */}
+                    <section id="stats" className="py-12 bg-gray-950/80 border-b border-gray-900">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                                {stats.map((s, idx) => (
+                                    <div key={idx} className="space-y-1">
+                                        <div className="font-serif text-3xl sm:text-4xl font-bold gold-grad-text">{s.number}</div>
+                                        <div className="text-xs uppercase tracking-widest text-gray-500 font-medium">{s.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- PRACTICE AREAS --- */}
+                    <section id="practices" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
+                            <h2 className="text-xs tracking-widest text-[#bf953f] font-bold uppercase">Strategic Legal Sectors</h2>
+                            <h3 className="font-serif text-3xl sm:text-4xl font-bold text-white">Fields of Absolute Mastery</h3>
+                            <p className="text-gray-400 text-sm font-light">Select a segment to view customized premium structural defense architectures.</p>
+                            
+                            {/* Filter Tabs */}
+                            <div className="flex justify-center gap-2 pt-6 flex-wrap">
+                                {['all', 'civil', 'criminal', 'cyber'].map((tab) => (
+                                    <button 
+                                        key={tab}
+                                        onClick={() => setActiveTab(tab)}
+                                        className={`px-4 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-sm border transition-all ${
+                                            activeTab === tab 
+                                            ? 'bg-[#bf953f] text-black border-[#bf953f]' 
+                                            : 'border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white'
+                                        }`}
+                                    >
+                                        {tab === 'all' ? 'All Masteries' : `${tab} litigation`}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filteredPractices.map((p) => (
+                                <div key={p.id} className="bg-gray-950/50 border border-gray-900 p-8 hover:bg-gray-950 transition-all duration-300 rounded-sm flex flex-col justify-between group gold-border-glow">
+                                    <div className="space-y-4">
+                                        <div className="w-12 h-12 bg-gray-900 border border-gray-800 flex items-center justify-center text-[#bf953f] text-lg rounded-sm group-hover:bg-[#bf953f] group-hover:text-black transition-all">
+                                            <i className={`fa-solid ${p.icon}`}></i>
+                                        </div>
+                                        <h4 className="font-serif text-xl font-bold text-white tracking-wide">{p.title}</h4>
+                                        <p className="text-gray-400 text-sm font-light leading-relaxed">{p.desc}</p>
+                                    </div>
+                                    <a href="#consultation" className="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-[#bf953f] tracking-wider uppercase hover:text-white transition-colors">
+                                        Consult on Strategy <i className="fa-solid fa-arrow-right-long text-[10px]"></i>
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* --- TESTIMONIALS (Dynamic React Slider) --- */}
+                    <section id="testimonials" className="py-20 bg-gray-950/40 border-y border-gray-900">
+                        <div className="max-w-4xl mx-auto px-4 text-center space-y-8">
+                            <i className="fa-solid fa-quote-left text-4xl text-[#bf953f]/30"></i>
+                            
+                            <div className="min-h-[140px] flex items-center justify-center">
+                                <p className="font-serif text-lg sm:text-xl md:text-2xl text-gray-200 italic font-light leading-relaxed max-w-3xl">
+                                    "{testimonials[activeTestimonial].text}"
+                                </p>
+                            </div>
+
+                            <div>
+                                <h5 className="text-white font-bold tracking-wide">{testimonials[activeTestimonial].name}</h5>
+                                <p className="text-xs tracking-wider text-[#bf953f] font-medium uppercase mt-0.5">{testimonials[activeTestimonial].role}</p>
+                            </div>
+
+                            {/* Bullet Navigation */}
+                            <div className="flex justify-center gap-3 pt-4">
+                                {testimonials.map((_, index) => (
+                                    <button 
+                                        key={index} 
+                                        onClick={() => setActiveTestimonial(index)} 
+                                        className={`h-1.5 transition-all duration-300 ${activeTestimonial === index ? 'w-8 bg-[#bf953f]' : 'w-2 bg-gray-700'} rounded-full`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- CONSULTATION FORM --- */}
+                    <section id="consultation" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                        <div className="bg-gray-950 border border-gray-900 grid grid-cols-1 lg:grid-cols-12 rounded-sm overflow-hidden shadow-2xl">
+                            
+                            <div className="lg:col-span-5 bg-gradient-to-b from-gray-900 to-gray-950 p-8 sm:p-12 border-b lg:border-b-0 lg:border-r border-gray-900 flex flex-col justify-between space-y-12">
+                                <div className="space-y-4">
+                                    <h3 className="font-serif text-3xl font-bold text-white">Chamber Briefing</h3>
+                                    <p className="text-gray-400 text-sm font-light leading-relaxed">
+                                        Initiate a completely confidential briefing with our legal strategy architects. Fill the validation grid, and our registrar will reach out within 2 hours.
+                                    </p>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <div className="flex items-start gap-4">
+                                        <div className="text-[#bf953f] mt-1"><i className="fa-solid fa-location-dot"></i></div>
+                                        <div>
+                                            <h6 className="text-xs uppercase tracking-wider text-gray-400 font-bold">Chamber Corporate Suite</h6>
+                                            <p className="text-sm text-gray-500 font-light mt-0.5">Level 7, Imperial Towers, Connaught Place, New Delhi</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-4">
+                                        <div className="text-[#bf953f] mt-1"><i className="fa-solid fa-envelope"></i></div>
+                                        <div>
+                                            <h6 className="text-xs uppercase tracking-wider text-gray-400 font-bold">Confidential Registry</h6>
+                                            <p className="text-sm text-gray-500 font-light mt-0.5">briefings@lexelitechambers.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p className="text-[11px] text-gray-600 font-light">
+                                    * Standard non-disclosure protocols apply automatically to all details transmitted through this legal grid.
+                                </p>
+                            </div>
+
+                            <div className="lg:col-span-7 p-8 sm:p-12">
+                                {formSubmitted ? (
+                                    <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-12 animate-fade-in">
+                                        <div className="w-16 h-16 bg-gray-900 border border-[#bf953f] rounded-full flex items-center justify-center text-[#bf953f] text-2xl">
+                                            <i className="fa-solid fa-envelope-circle-check"></i>
+                                        </div>
+                                        <h4 className="font-serif text-2xl font-bold text-white">Briefing Logged Securely</h4>
+                                        <p className="text-gray-400 text-sm max-w-sm font-light">
+                                            Your legal parameter set has been safely routed to our internal senior panel. A priority verification ticket has been mapped to your contact grid.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <form onSubmit={handleForm} className="space-y-6">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Full Identity</label>
+                                                <input 
+                                                    type="text" required
+                                                    value={formData.name}
+                                                    onChange={(e)=>setFormData({...formData, name: e.target.value})}
+                                                    placeholder="Adv. / Dr. / Corporate Entity Name"
+                                                    className="w-full bg-gray-900/60 border border-gray-800 focus:border-[#bf953f] rounded-sm px-4 py-3 text-sm outline-none text-white transition-all font-light"
+                                                />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Secure Email Node</label>
+                                                <input 
+                                                    type="email" required
+                                                    value={formData.email}
+                                                    onChange={(e)=>setFormData({...formData, email: e.target.value})}
+                                                    placeholder="identity@corporate.com"
+                                                    className="w-full bg-gray-900/60 border border-gray-800 focus:border-[#bf953f] rounded-sm px-4 py-3 text-sm outline-none text-white transition-all font-light"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Direct Dial Grid</label>
+                                                <input 
+                                                    type="tel"
+                                                    value={formData.phone}
+                                                    onChange={(e)=>setFormData({...formData, phone: e.target.value})}
+                                                    placeholder="+91 XXXXX XXXXX"
+                                                    className="w-full bg-gray-900/60 border border-gray-800 focus:border-[#bf953f] rounded-sm px-4 py-3 text-sm outline-none text-white transition-all font-light"
+                                                />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Litigation Track</label>
+                                                <select 
+                                                    value={formData.caseType}
+                                                    onChange={(e)=>setFormData({...formData, caseType: e.target.value})}
+                                                    className="w-full bg-gray-900/60 border border-gray-800 focus:border-[#bf953f] rounded-sm px-4 py-3 text-sm outline-none text-white transition-all font-light appearance-none"
+                                                >
+                                                    <option value="" disabled>Select Litigation Vertical</option>
+                                                    <option value="corporate">Corporate Architecture Disputes</option>
+                                                    <option value="high-court">High-Profile Criminal Defense</option>
+                                                    <option value="real-estate">Asset & Commercial Property Valuation</option>
+                                                    <option value="other">General High-Value Advisory</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-1.5">
+                                            <label className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Case Summary / Critical Parameters</label>
+                                            <textarea 
+                                                rows="4"
+                                                value={formData.message}
+                                                onChange={(e)=>setFormData({...formData, message: e.target.value})}
+                                                placeholder="Provide brief high-level context of the pending litigation grid..."
+                                                className="w-full bg-gray-900/60 border border-gray-800 focus:border-[#bf953f] rounded-sm px-4 py-3 text-sm outline-none text-white transition-all font-light resize-none"
+                                            ></textarea>
+                                        </div>
+
+                                        <button type="submit" className="w-full py-4 bg-[#bf953f] hover:bg-[#e2b458] text-black font-bold uppercase tracking-wider text-xs transition-all rounded-sm shadow-md">
+                                            Transmit Secure Briefing <i className="fa-solid fa-paper-plane ml-2"></i>
+                                        </button>
+                                    </form>
+                                )}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- FOOTER --- */}
+                    <footer className="bg-gray-950 border-t border-gray-900 py-8">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-light">
+                            <p>© 2026 LexElite Chambers Architecture. All Rights Strictly Protected.</p>
+                            <div className="flex gap-6">
+                                <a href="#" className="hover:text-[#bf953f] transition-colors">Privacy Protocols</a>
+                                <a href="#" className="hover:text-[#bf953f] transition-colors">Terms of Engagement</a>
+                                <a href="#" className="hover:text-[#bf953f] transition-colors">Bar Council Compliance</a>
+                            </div>
+                        </div>
+                    </footer>
+
+                </div>
+            );
+        }
+
+        // Render the Dynamic Layout
+        const root = React-DOM.createRoot(document.getElementById('root'));
+        root.render(<AdvocateWebsite />);
+    </script>
+</body>
+</html>

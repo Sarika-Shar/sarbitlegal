@@ -1,0 +1,712 @@
+/* Consultation Booking Component Styles */
+.consult-booking-section {
+  padding: 80px 0;
+  background: #f8f9fa;
+  position: relative;
+  font-family: inherit;
+}
+
+.consult-badge {
+  display: inline-block;
+  background: #c59b27;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 12px;
+}
+
+.consult-title {
+  color: #1a202c;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.consult-desc {
+  color: #4a5568;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto 16px auto;
+}
+
+.consult-price-pill {
+  display: inline-block;
+  background: #1a2b4c;
+  color: #e2e8f0;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 16px;
+}
+
+.consult-price-pill span {
+  color: #ffd700;
+  font-weight: 800;
+  font-size: 18px;
+  margin-left: 6px;
+}
+
+/* Form Container Card */
+.consult-form-wrapper {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  padding: 35px 40px;
+  border: 1px solid #e2e8f0;
+}
+
+.pane-title {
+  color: #1a2b4c;
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: 2px solid #c59b27;
+  padding-bottom: 10px;
+  margin-bottom: 22px;
+}
+
+.input-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+.hint-text {
+  font-size: 12px;
+  color: #718096;
+}
+
+.date-control {
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e0;
+  padding: 10px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a202c;
+  background-color: #f7fafc;
+}
+
+.date-control:focus {
+  border-color: #c59b27;
+  box-shadow: 0 0 0 3px rgba(197, 155, 39, 0.2);
+}
+
+/* Switch Tabs */
+.slot-switch-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.slot-switch-tabs .tab-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #edf2f7;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slot-switch-tabs .tab-btn.active {
+  background: #1a2b4c;
+  color: #ffffff;
+  border-color: #1a2b4c;
+}
+
+/* Slot Chips Grid */
+.slot-pills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.slot-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.slot-chip:hover {
+  border-color: #c59b27;
+  background: #fffdf5;
+}
+
+.slot-chip.chosen {
+  background: #1a2b4c;
+  border-color: #1a2b4c;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(26, 43, 76, 0.25);
+}
+
+.slot-chip .slot-time {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.slot-chip .slot-arrow {
+  font-size: 11px;
+  color: #718096;
+  margin-top: 2px;
+}
+
+.slot-chip.chosen .slot-arrow {
+  color: #e2e8f0;
+}
+
+.slot-chip .slot-tag {
+  font-size: 10px;
+  background: #e2e8f0;
+  color: #2d3748;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.slot-chip.chosen .slot-tag {
+  background: #c59b27;
+  color: #ffffff;
+}
+
+/* Selection Summary Box */
+.slot-summary-box {
+  background: #ebf8ff;
+  border-left: 4px solid #3182ce;
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.sum-heading {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2b6cb0;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.sum-detail {
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.duration-tag {
+  display: inline-block;
+  background: #3182ce;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+/* Right Pane - Form Controls */
+.consult-right-pane .form-control {
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e0;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.consult-right-pane .form-control:focus {
+  border-color: #c59b27;
+  box-shadow: 0 0 0 3px rgba(197, 155, 39, 0.15);
+}
+
+/* Payment Card */
+.consult-payment-card {
+  background: #f7fafc;
+  border-radius: 12px;
+  border: 1.5px dashed #cbd5e0;
+  padding: 18px 20px;
+}
+
+.pay-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.pay-card-head span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.pay-card-head .price-tag {
+  font-size: 24px;
+  color: #1a2b4c;
+  font-weight: 800;
+}
+
+/* UPI Box */
+.upi-box-wrapper {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 8px;
+  border: 1.5px solid #e2e8f0;
+}
+
+.upi-header-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.upi-header-banner .upi-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2b4c;
+}
+
+.upi-badge-apps {
+  font-size: 11px;
+  background: #e6fffa;
+  color: #234e52;
+  border: 1px solid #b2f5ea;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.qr-wrapper {
+  display: block;
+  align-items: center;
+  gap: 18px;
+  background: #fafafa;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #eef2f6;
+}
+
+.qr-img {
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 4px;
+  background: #fff;
+  width: 75%;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.qr-info {
+  flex: 1;
+}
+
+.qr-info p {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #2d3748;
+}
+
+.qr-info code {
+  background: #edf2f7;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #1a2b4c;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* Copy UPI ID Button */
+.btn-copy-upi {
+  background: #edf2f7;
+  color: #1a2b4c;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.3;
+}
+
+.btn-copy-upi:hover {
+  background: #1a2b4c;
+  color: #ffffff;
+  border-color: #1a2b4c;
+  transform: translateY(-1px);
+}
+
+.btn-copy-upi.copied {
+  background: #059669 !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
+}
+
+.upi-steps-list {
+  margin-top: 8px;
+  padding-left: 16px;
+  font-size: 12px;
+  color: #718096;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+.upi-steps-list li {
+  margin-bottom: 3px;
+}
+
+/* Submit Button */
+.btn-consult-submit {
+  width: 100%;
+  background: #1a2b4c;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(26, 43, 76, 0.3);
+}
+
+.btn-consult-submit:hover {
+  background: #c59b27;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(197, 155, 39, 0.4);
+}
+
+.btn-consult-submit:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Receipt / Confirmation Card */
+.consult-receipt-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 2px solid #48bb78;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 1.5px dashed #cbd5e0;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+
+.check-icon {
+  width: 60px;
+  height: 60px;
+  background: #48bb78;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
+}
+
+.receipt-header h3 {
+  color: #1a202c;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.receipt-id {
+  font-size: 15px;
+  color: #4a5568;
+}
+
+.receipt-id span {
+  font-weight: 800;
+  color: #1a2b4c;
+  background: #edf2f7;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.receipt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  margin-bottom: 30px;
+}
+
+.receipt-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt-item.full-row {
+  grid-column: 1 / -1;
+}
+
+.r-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #718096;
+  margin-bottom: 4px;
+}
+
+.r-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.text-gold {
+  color: #c59b27;
+}
+
+.r-paid {
+  color: #276749;
+  background: #c6f6d5;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.code-val {
+  background: #edf2f7;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Automated Sync & Notification Card */
+.receipt-sync-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.sync-card-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.sync-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+}
+
+.sync-title {
+  color: #1a2b4c;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.sync-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 0;
+}
+
+.sync-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.btn-sync-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-sync-action .sync-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.btn-sync-action .sync-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-sync-action .sync-text strong {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.btn-sync-action .sync-text span {
+  font-size: 11px;
+  margin-top: 3px;
+  line-height: 1.2;
+}
+
+/* 1. Client WhatsApp Button */
+.btn-sync-wa {
+  background: #ecfdf5;
+  border: 1.5px solid #a7f3d0;
+  color: #065f46;
+}
+
+.btn-sync-wa .sync-icon {
+  background: #25d366;
+  color: #ffffff;
+}
+
+.btn-sync-wa:hover {
+  background: #d1fae5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+  color: #064e3b;
+}
+
+/* 2. Admin Alert Button */
+.btn-sync-admin {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.btn-sync-admin .sync-icon {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn-sync-admin:hover {
+  background: #dbeafe;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  color: #1e3a8a;
+}
+
+/* 3. Google Calendar Button */
+.btn-sync-cal {
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+  color: #92400e;
+}
+
+.btn-sync-cal .sync-icon {
+  background: #ea4335;
+  color: #ffffff;
+}
+
+.btn-sync-cal:hover {
+  background: #fef3c7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 67, 53, 0.2);
+  color: #78350f;
+}
+
+.receipt-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-print-slip {
+  background: #1a2b4c;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-print-slip:hover {
+  background: #2a4365;
+}
+
+.btn-new-booking {
+  background: #edf2f7;
+  color: #2d3748;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-new-booking:hover {
+  background: #e2e8f0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .consult-form-wrapper {
+    padding: 24px 18px;
+  }
+  .receipt-grid {
+    grid-template-columns: 1fr;
+  }
+  .slot-switch-tabs {
+    flex-direction: column;
+  }
+  .qr-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .qr-img {
+    margin: 0 auto;
+  }
+  .upi-steps-list {
+    text-align: left;
+  }
+  .sync-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  .receipt-actions {
+    flex-direction: column;
+  }
+}
