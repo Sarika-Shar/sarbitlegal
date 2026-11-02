@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import Sidebar from "../Components/Sidebar";
 
 const AdminConsultations = () => {
@@ -12,7 +13,7 @@ const AdminConsultations = () => {
   const fetchBookings = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/sarbit/consultation_bookings")
+      .get(`${API_BASE_URL}/sarbit/consultation_bookings`)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setBookings(res.data);
@@ -28,7 +29,7 @@ const AdminConsultations = () => {
 
   const handleStatusUpdate = async (id, field, value) => {
     try {
-      await axios.put(`http://localhost:5000/sarbit/consultation_bookings/${id}`, {
+      await axios.put(`${API_BASE_URL}/sarbit/consultation_bookings/${id}`, {
         [field]: value
       });
       fetchBookings();
@@ -41,7 +42,7 @@ const AdminConsultations = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this consultation booking?")) return;
     try {
-      await axios.delete(`http://localhost:5000/sarbit/consultation_bookings/${id}`);
+      await axios.delete(`${API_BASE_URL}/sarbit/consultation_bookings/${id}`);
       alert("Consultation booking deleted successfully!");
       fetchBookings();
     } catch (err) {

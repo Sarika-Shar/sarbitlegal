@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "./config";
 
 
 function Contactus() {
@@ -19,7 +20,7 @@ const [formData, setFormData] = useState({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/sarbit/appointment_form", formData);
+      const res = await axios.post(`${API_BASE_URL}/sarbit/appointment_form`, formData);
       alert(res.data.message);
     } catch (err) {
       console.error(err);

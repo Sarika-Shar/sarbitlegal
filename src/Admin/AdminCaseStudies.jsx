@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { API_BASE_URL, getImageUrl } from "../config";
 import Sidebar from "../Components/Sidebar";
 
 const AdminCaseStudies = () => {
@@ -16,7 +17,7 @@ const AdminCaseStudies = () => {
   // Fetch categories
   const fetchCategories = () => {
     axios
-      .get("http://localhost:5000/sarbit/category")
+      .get(`${API_BASE_URL}/sarbit/category`)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setCategories(res.data);
@@ -53,7 +54,7 @@ const AdminCaseStudies = () => {
         formData.append("image", file);
       }
 
-      await axios.post("http://localhost:5000/sarbit/category", formData, {
+      await axios.post(`${API_BASE_URL}/sarbit/category`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
@@ -77,7 +78,7 @@ const AdminCaseStudies = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this category?")) return;
     try {
-      await axios.delete(`http://localhost:5000/sarbit/category/${id}`);
+      await axios.delete(`${API_BASE_URL}/sarbit/category/${id}`);
       alert("Category Deleted!");
       fetchCategories();
     } catch (err) {
@@ -195,7 +196,7 @@ const AdminCaseStudies = () => {
                               src={
                                 c.image_url.startsWith("http")
                                   ? c.image_url
-                                  : `http://localhost:5000/${c.image_url}`
+                                  : getImageUrl(c.image_url)
                               }
                               alt={c.category_name}
                               style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "8px" }}

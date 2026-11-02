@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import Sidebar from "../Components/Sidebar";
 
 const AdminAppointments = () => {
@@ -16,7 +17,7 @@ const AdminAppointments = () => {
   // Fetch all appointments
   const fetchAppointments = () => {
     axios
-      .get("http://localhost:5000/sarbit/appointment_form")
+      .get(`${API_BASE_URL}/sarbit/appointment_form`)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setAppointments(res.data);
@@ -41,7 +42,7 @@ const AdminAppointments = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/sarbit/appointment_form", form);
+      const res = await axios.post(`${API_BASE_URL}/sarbit/appointment_form`, form);
       alert(res.data?.message || "Appointment Added Successfully!");
       setForm({ name: "", email: "", mobile: "", case_type: "", message: "" });
       fetchAppointments();
@@ -61,7 +62,7 @@ const AdminAppointments = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this appointment?")) return;
     try {
-      await axios.delete(`http://localhost:5000/sarbit/appointment_form/${id}`);
+      await axios.delete(`${API_BASE_URL}/sarbit/appointment_form/${id}`);
       alert("Appointment Deleted!");
       fetchAppointments();
     } catch (err) {

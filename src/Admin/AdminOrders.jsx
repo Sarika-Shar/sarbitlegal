@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL, getImageUrl, getPdfUrl } from "../config";
 import { Link } from "react-router-dom";
 import Sidebar from "../Components/Sidebar";
 
@@ -14,7 +15,7 @@ const AdminOrders = () => {
   });
 
   const fetchOrders = () => {
-    axios.get("http://localhost:5000/sarbit/case_orders")
+    axios.get(`${API_BASE_URL}/sarbit/case_orders`)
       .then(res => setOrders(res.data))
       .catch(err => console.error("Error fetching orders:", err));
   };
@@ -51,7 +52,7 @@ const AdminOrders = () => {
       if (fileImage) formData.append("image_url", fileImage);
       if (filePdf) formData.append("pdf_url", filePdf);
 
-      await axios.post("http://localhost:5000/sarbit/case_orders", formData, {
+      await axios.post(`${API_BASE_URL}/sarbit/case_orders`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
@@ -77,7 +78,7 @@ const AdminOrders = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this order?")) {
       try {
-        await axios.delete(`http://localhost:5000/sarbit/case_orders/${id}`);
+        await axios.delete(`${API_BASE_URL}/sarbit/case_orders/${id}`);
         alert("Deleted successfully!");
         fetchOrders();
       } catch (err) {
@@ -230,7 +231,7 @@ const handleFileChange = (e) => {
                     <td>
                       {o.image_url ? (
                         <img
-                          src={o.image_url.startsWith("http") ? o.image_url : `http://localhost:5000/${o.image_url}`}
+                          src={getImageUrl(o.image_url)}
                           alt={o.name}
                           style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "4px" }}
                         />
@@ -243,7 +244,7 @@ const handleFileChange = (e) => {
                     <td>
                       {o.pdf_url ? (
                         <a
-                          href={o.pdf_url.startsWith("http") ? o.pdf_url : `http://localhost:5000/${o.pdf_url}`}
+                          href={getPdfUrl(o.pdf_url)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn btn-sm btn-info"

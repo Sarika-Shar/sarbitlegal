@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./About.css";
+import { API_BASE_URL, getImageUrl } from "./config";
 
 function About() {
   const [teamPreview, setTeamPreview] = useState([]);
@@ -9,7 +10,7 @@ function About() {
   // Fetch team members for the leadership preview section
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sarbit/team_members")
+      .get(`${API_BASE_URL}/sarbit/team_members`)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setTeamPreview(res.data.slice(0, 3));
@@ -22,7 +23,7 @@ function About() {
     if (!url) return "/src/assets/person_1.jpg";
     if (url.startsWith("http")) return url;
     const clean = url.startsWith("/") ? url.substring(1) : url;
-    return `http://localhost:5000/${clean}`;
+    return getImageUrl(url, "/src/assets/person_1.jpg");
   };
 
   return (

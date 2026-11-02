@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./OurTeam.css";
+import { API_BASE_URL, getImageUrl } from "./config";
 
 function OurTeam() {
   const [members, setMembers] = useState([]);
@@ -16,7 +17,7 @@ function OurTeam() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get("http://localhost:5000/sarbit/team_members");
+      const res = await axios.get(`${API_BASE_URL}/sarbit/team_members`);
       if (Array.isArray(res.data)) {
         setMembers(res.data);
       } else {
@@ -39,7 +40,7 @@ function OurTeam() {
     if (!imgUrl) return "/src/assets/person_1.jpg";
     if (imgUrl.startsWith("http")) return imgUrl;
     const clean = imgUrl.startsWith("/") ? imgUrl.substring(1) : imgUrl;
-    return `http://localhost:5000/${clean}`;
+    return getImageUrl(imgUrl, "/src/assets/person_1.jpg");
   };
 
   // Extract unique roles for dynamic filter pills

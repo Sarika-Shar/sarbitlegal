@@ -10,6 +10,7 @@ import slide3 from './assets/slide3.jpg';
 import './case-orders.css';
 import './bottom-slider.css';
 import './team-section.css';
+import { API_BASE_URL, getImageUrl, getPdfUrl } from './config';
 
 function Home() {
 	
@@ -71,14 +72,14 @@ function Home() {
   }, []);
   // fetch categories
   useEffect(() => {
-    axios.get("http://localhost:5000/sarbit/category")
+    axios.get(`${API_BASE_URL}/sarbit/category`)
       .then(res => setCategories(res.data))
       .catch(err => console.error(err));
   }, []);
 
   // fetch team members
   useEffect(() => {
-    fetch("http://localhost:5000/sarbit/team_members")
+    fetch(`${API_BASE_URL}/sarbit/team_members`)
       .then(res => res.json())
       .then(data => setMembers(data))
       .catch(err => console.error(err));
@@ -86,7 +87,7 @@ function Home() {
 
   // fetch case orders (PDF, name, image, case title)
   useEffect(() => {
-    axios.get("http://localhost:5000/sarbit/case_orders")
+    axios.get(`${API_BASE_URL}/sarbit/case_orders`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
           setCaseOrders(res.data);
@@ -139,7 +140,7 @@ function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/sarbit/appointment_form", formData);
+      const res = await axios.post(`${API_BASE_URL}/sarbit/appointment_form`, formData);
       alert(res.data.message);
     } catch (err) {
       console.error(err);
@@ -633,7 +634,7 @@ function Home() {
                   {/* Image */}
                   <div className="pa-card-img-box">
                     <img
-                      src={cat.image_url}
+                      src={getImageUrl(cat.image_url)}
                       alt={cat.category_name}
                       className="pa-card-img"
                       loading="lazy"
@@ -695,7 +696,7 @@ function Home() {
                    <div className="tm-card-divider"></div>
                   <Link to="/CaseOrder" >
                   <img
-                    src={`backend/${order.image_url}`}
+                    src={getImageUrl(order.image_url)}
                     alt={order.name || "Case Order"}
                     className="case-order-img"
                     // onError={(e) => {
@@ -723,7 +724,7 @@ function Home() {
                   )}
                   <div className="case-order-action">
                     <a
-                      href={`backend/${order.pdf_url}`}
+                      href={getPdfUrl(order.pdf_url)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="order-pdf-btn"
@@ -782,7 +783,7 @@ function Home() {
                 {/* Image */}
                 <div className="tm-card-img-wrap">
                   <img
-                    src={`backend/${member.image_url}`}
+                    src={getImageUrl(member.image_url)}
                     alt={member.name}
                     className="tm-card-img"
                     loading="lazy"

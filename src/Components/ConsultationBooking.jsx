@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import barcodeImg from "../assets/barcode.jfif";
 import "./ConsultationBooking.css";
 
@@ -206,7 +207,7 @@ _Please verify this UTR in your bank / UPI statement._`
         booking_status: "confirmed",
       };
 
-      await axios.post("http://localhost:5000/sarbit/consultation_bookings", bookingPayload);
+      await axios.post(`${API_BASE_URL}/sarbit/consultation_bookings`, bookingPayload);
 
       setConfirmedPass({
         token: tokenCode,

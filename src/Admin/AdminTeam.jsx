@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../Components/Sidebar";
 import axios from "axios";
+import { API_BASE_URL, getImageUrl } from "../config";
 
 const AdminTeam = () => {
   const [members, setMembers] = useState([]);
@@ -11,7 +12,7 @@ const AdminTeam = () => {
 
   const fetchMembers = () => {
     axios
-      .get("http://localhost:5000/sarbit/team_members")
+      .get(`${API_BASE_URL}/sarbit/team_members`)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setMembers(res.data);
@@ -46,7 +47,7 @@ const AdminTeam = () => {
         formData.append("image", file);
       }
 
-      await axios.post("http://localhost:5000/sarbit/team_members", formData, {
+      await axios.post(`${API_BASE_URL}/sarbit/team_members`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
@@ -70,7 +71,7 @@ const AdminTeam = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this team member?")) return;
     try {
-      await axios.delete(`http://localhost:5000/sarbit/team_members/${id}`);
+      await axios.delete(`${API_BASE_URL}/sarbit/team_members/${id}`);
       alert("Member Deleted!");
       fetchMembers();
     } catch (err) {
@@ -186,7 +187,7 @@ const AdminTeam = () => {
                               src={
                                 m.image_url.startsWith("http")
                                   ? m.image_url
-                                  : `http://localhost:5000/${m.image_url}`
+                                  : getImageUrl(m.image_url)
                               }
                               alt={m.name}
                               style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "50%" }}

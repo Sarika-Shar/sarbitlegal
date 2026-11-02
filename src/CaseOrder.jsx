@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./CaseOrder.css";
+import { API_BASE_URL, getImageUrl as resolveImageUrl, getPdfUrl as resolvePdfUrl } from "./config";
 
 function CaseOrder() {
   const [orders, setOrders] = useState([]);
@@ -16,7 +17,7 @@ function CaseOrder() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get("http://localhost:5000/sarbit/case_orders");
+      const res = await axios.get(`${API_BASE_URL}/sarbit/case_orders`);
       if (Array.isArray(res.data)) {
         setOrders(res.data);
       } else {
@@ -35,20 +36,10 @@ function CaseOrder() {
   }, []);
 
   // Helper for Image URLs
-  const getImageUrl = (img) => {
-    if (!img) return "/src/assets/case-1.jpg";
-    if (img.startsWith("http")) return img;
-    const clean = img.startsWith("/") ? img.substring(1) : img;
-    return `http://localhost:5000/${clean}`;
-  };
+  const getImageUrl = (img) => resolveImageUrl(img, "/src/assets/case-1.jpg");
 
   // Helper for PDF URLs
-  const getPdfUrl = (pdf) => {
-    if (!pdf) return "#";
-    if (pdf.startsWith("http")) return pdf;
-    const clean = pdf.startsWith("/") ? pdf.substring(1) : pdf;
-    return `http://localhost:5000/${clean}`;
-  };
+  const getPdfUrl = (pdf) => resolvePdfUrl(pdf, "#");
 
   // Helper to determine status badge type
   const getOrderStatus = (desc) => {

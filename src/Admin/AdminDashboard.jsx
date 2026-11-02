@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
+import { API_BASE_URL, getImageUrl, getPdfUrl } from "../config";
 import Sidebar from "../Components/Sidebar";
 
 function AdminDashboard() {
@@ -38,7 +39,7 @@ function AdminDashboard() {
 
     // User verify karna
     axios
-      .get(`http://localhost:5000/sarbit/registration/${userId}`)
+      .get(`${API_BASE_URL}/sarbit/registration/${userId}`)
       .then((res) => {
         if (res.data && (res.data.id || res.data.Uname)) {
           setUser(res.data);
@@ -70,12 +71,12 @@ function AdminDashboard() {
     setLoading(true);
     try {
       // Pehle backend ke dedicated dashboard/stats route ko try karte hain
-      const res = await axios.get("http://localhost:5000/sarbit/dashboard/stats");
+      const res = await axios.get(`${API_BASE_URL}/sarbit/dashboard/stats`);
       if (res.data) {
         // Fetch team members list for quick preview
         let teamList = [];
         try {
-          const teamRes = await axios.get("http://localhost:5000/sarbit/team_members");
+          const teamRes = await axios.get(`${API_BASE_URL}/sarbit/team_members`);
           teamList = Array.isArray(teamRes.data) ? teamRes.data : [];
         } catch (e) {
           console.warn("Could not load full team list:", e);
@@ -106,11 +107,11 @@ function AdminDashboard() {
     // Fallback: Individual endpoints se calculate karna agar backend restart na hua ho
     try {
       const [teamRes, catRes, ordersRes, apptRes, consultRes] = await Promise.allSettled([
-        axios.get("http://localhost:5000/sarbit/team_members"),
-        axios.get("http://localhost:5000/sarbit/category"),
-        axios.get("http://localhost:5000/sarbit/case_orders"),
-        axios.get("http://localhost:5000/sarbit/appointment_form"),
-        axios.get("http://localhost:5000/sarbit/consultation_bookings"),
+        axios.get(`${API_BASE_URL}/sarbit/team_members`),
+        axios.get(`${API_BASE_URL}/sarbit/category`),
+        axios.get(`${API_BASE_URL}/sarbit/case_orders`),
+        axios.get(`${API_BASE_URL}/sarbit/appointment_form`),
+        axios.get(`${API_BASE_URL}/sarbit/consultation_bookings`),
       ]);
 
       const teamData = teamRes.status === "fulfilled" && Array.isArray(teamRes.value.data) ? teamRes.value.data : [];
@@ -179,7 +180,7 @@ function AdminDashboard() {
     }
     if (window.confirm("Are you sure you want to delete your administrator profile?")) {
       axios
-        .delete(`http://localhost:5000/sarbit/registration/delete/${userId}`)
+        .delete(`${API_BASE_URL}/sarbit/registration/delete/${userId}`)
         .then(() => {
           alert("Account Deleted Successfully");
           localStorage.removeItem("userId");
@@ -703,7 +704,7 @@ function AdminDashboard() {
                                 <div className="d-flex align-items-center">
                                   {cat.image_url ? (
                                     <img 
-                                      src={`http://localhost:5000/${cat.image_url}`} 
+                                      src={getImageUrl(cat.image_url)} 
                                       alt={cat.category_name} 
                                       className="rounded mr-2" 
                                       style={{ width: "36px", height: "36px", objectFit: "cover" }}
@@ -813,7 +814,7 @@ function AdminDashboard() {
                             <div className="d-flex align-items-center">
                               {m.image_url ? (
                                 <img 
-                                  src={`http://localhost:5000/${m.image_url}`} 
+                                  src={getImageUrl(m.image_url)} 
                                   alt={m.name} 
                                   className="rounded-circle mr-3" 
                                   style={{ width: "40px", height: "40px", objectFit: "cover" }}
@@ -889,7 +890,7 @@ function AdminDashboard() {
                             <div>
                               {order.pdf_url ? (
                                 <a 
-                                  href={order.pdf_url.startsWith("http") ? order.pdf_url : `http://localhost:5000/${order.pdf_url}`} 
+                                  href={getPdfUrl(order.pdf_url)} 
                                   target="_blank" 
                                   rel="noreferrer" 
                                   className="btn btn-sm btn-outline-danger"
