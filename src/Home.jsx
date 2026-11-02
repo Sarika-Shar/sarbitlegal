@@ -11,15 +11,16 @@ import './case-orders.css';
 import './bottom-slider.css';
 import './team-section.css';
 import { API_BASE_URL, getImageUrl, getPdfUrl } from './config';
+import { defaultCategories, defaultMembers, defaultOrders } from './data/defaultData';
 
 function Home() {
 	
   // categories state
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(defaultCategories);
   // members state
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState(defaultMembers);
   // case orders state
-  const [caseOrders, setCaseOrders] = useState([]);
+  const [caseOrders, setCaseOrders] = useState(defaultOrders);
   // form state
   const [formData, setFormData] = useState({
     name: "",
@@ -73,16 +74,16 @@ function Home() {
   // fetch categories
   useEffect(() => {
     axios.get(`${API_BASE_URL}/sarbit/category`)
-      .then(res => setCategories(res.data))
-      .catch(err => console.error(err));
+      .then(res => { if (Array.isArray(res.data) && res.data.length > 0) setCategories(res.data); })
+      .catch(err => console.warn('Category fetch error, keeping default:', err));
   }, []);
 
   // fetch team members
   useEffect(() => {
     fetch(`${API_BASE_URL}/sarbit/team_members`)
       .then(res => res.json())
-      .then(data => setMembers(data))
-      .catch(err => console.error(err));
+      .then(data => { if (Array.isArray(data) && data.length > 0) setMembers(data); })
+      .catch(err => console.warn('Team fetch error, keeping default:', err));
   }, []);
 
   // fetch case orders (PDF, name, image, case title)

@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./About.css";
 import { API_BASE_URL, getImageUrl } from "./config";
+import { defaultMembers } from "./data/defaultData";
 
 function About() {
-  const [teamPreview, setTeamPreview] = useState([]);
+  const [teamPreview, setTeamPreview] = useState(defaultMembers.slice(0, 3));
 
   // Fetch team members for the leadership preview section
   useEffect(() => {

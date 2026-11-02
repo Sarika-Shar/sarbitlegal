@@ -1,0 +1,42 @@
+[
+  {
+    "id": 12,
+    "name": "Bittoo Sharma",
+    "case_title": "Amit vs pretty",
+    "image_url": "images/1791984973105-bg_2.jpg",
+    "pdf_url": "pdfs/1791984973132-302ipc.pdf",
+    "description": "Bail granted",
+    "order_date": null,
+    "created_at": "2026-10-14T13:36:13.000Z"
+  },
+  {
+    "id": 13,
+    "name": "Poonam Sharma",
+    "case_title": "sajid vs sabana",
+    "image_url": "images/1791985018976-slide3.jpg",
+    "pdf_url": "pdfs/1791985018979-302ipc.pdf",
+    "description": "bjhjhj",
+    "order_date": null,
+    "created_at": "2026-10-14T13:36:59.000Z"
+  },
+  {
+    "id": 14,
+    "name": "Abhishek",
+    "case_title": "State vs Gaurav Nagar",
+    "image_url": "images/1791985059583-slide1.jpg",
+    "pdf_url": "pdfs/1791985059624-302ipc.pdf",
+    "description": "Bail Granted",
+    "order_date": null,
+    "created_at": "2026-10-14T13:37:39.000Z"
+  },
+  {
+    "id": 15,
+    "name": "Kaushal Rana",
+    "case_title": "Poonam vs sajid",
+    "image_url": "images/1791985099188-slide1.jpg",
+    "pdf_url": "pdfs/1791985099189-302ipc.pdf",
+    "description": "Bail Pending",
+    "order_date": null,
+    "created_at": "2026-10-14T13:38:19.000Z"
+  }
+]

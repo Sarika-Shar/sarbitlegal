@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./OurTeam.css";
 import { API_BASE_URL, getImageUrl } from "./config";
+import { defaultMembers } from "./data/defaultData";
 
 function OurTeam() {
-  const [members, setMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [members, setMembers] = useState(defaultMembers);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");

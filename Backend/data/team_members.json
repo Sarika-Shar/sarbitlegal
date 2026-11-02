@@ -1,0 +1,23 @@
+[
+  {
+    "id": 24,
+    "name": "Bittoo Sharma",
+    "role": "Senior Advocate ",
+    "description": "Bail Granted",
+    "image_url": "images/1791529791240-WhatsApp Image 2026-05-25 at 12.59.02 PM.jpeg"
+  },
+  {
+    "id": 28,
+    "name": "Kaushal Rana",
+    "role": "Advocate",
+    "description": "Legal Adviser",
+    "image_url": "images/1791984806425-person_1.jpg"
+  },
+  {
+    "id": 29,
+    "name": "Abhishek",
+    "role": "Advocate",
+    "description": "Criminal Cases",
+    "image_url": "images/1791984840887-bg_1.jpg"
+  }
+]

@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./CaseOrder.css";
 import { API_BASE_URL, getImageUrl as resolveImageUrl, getPdfUrl as resolvePdfUrl } from "./config";
+import { defaultOrders } from "./data/defaultData";
 
 function CaseOrder() {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [orders, setOrders] = useState(defaultOrders);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");

@@ -1,0 +1,37 @@
+[
+  {
+    "category_id": 1,
+    "category_name": "Case Study",
+    "parent_id": null,
+    "description": "All case studies related to law",
+    "image_url": null
+  },
+  {
+    "category_id": 20,
+    "category_name": "Criminal Law",
+    "parent_id": 1,
+    "description": "Senior",
+    "image_url": "backend/images/1791528597375-Copilot_20260925_132054.png"
+  },
+  {
+    "category_id": 21,
+    "category_name": "Criminal Law",
+    "parent_id": 1,
+    "description": "Senior",
+    "image_url": "backend/images/1791528596466-Copilot_20260925_132054.png"
+  },
+  {
+    "category_id": 22,
+    "category_name": "civil law",
+    "parent_id": 1,
+    "description": "Senior",
+    "image_url": "backend/images/1791901372190-134255487544495404.jpg"
+  },
+  {
+    "category_id": 24,
+    "category_name": "Matrimonial",
+    "parent_id": 1,
+    "description": "family cases",
+    "image_url": "images/1791985257930-slide3.jpg"
+  }
+]

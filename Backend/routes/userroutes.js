@@ -5,6 +5,9 @@ const path = require("path");
 const db = require("../db");
 
 const fs = require("fs");
+const fallbackCategories = require("../data/category.json");
+const fallbackTeam = require("../data/team_members.json");
+const fallbackOrders = require("../data/case_orders.json");
 
 // Ensure upload directories exist
 const imagesDir = path.join(__dirname, "../images");
@@ -143,7 +146,7 @@ router.delete("/registration/delete/:id", (req, res) => {
 // ---- CATEGORY ROUTES ----
 router.get("/category", (req, res) => {
   db.query("SELECT category_id, category_name, description, image_url, parent_id FROM category ORDER BY category_id DESC", (err, result) => {
-    if (err) return res.status(500).json({ error: err.sqlMessage || err });
+    if (err || !result || result.length === 0) return res.json(fallbackCategories);
     res.json(result);
   });
 });
@@ -199,7 +202,7 @@ router.delete("/category/:id", (req, res) => {
 // ---- TEAM MEMBERS ROUTES ----
 router.get("/team_members", (req, res) => {
   db.query("SELECT * FROM team_members ORDER BY id DESC", (err, results) => {
-    if (err) return res.status(500).json({ error: err.sqlMessage || err });
+    if (err || !results || results.length === 0) return res.json(fallbackTeam);
     res.json(results);
   });
 });
@@ -251,10 +254,7 @@ router.delete("/team_members/:id", (req, res) => {
 // ---- CASE ORDERS ROUTES ----
 router.get("/case_orders", (req, res) => {
   db.query("SELECT * FROM case_orders ORDER BY id DESC", (err, rows) => {
-    if (err) {
-      console.error("Error fetching case orders:", err);
-      return res.status(500).json({ error: err.sqlMessage || "Database query failed" });
-    }
+    if (err || !rows || rows.length === 0) return res.json(fallbackOrders);
     res.json(rows);
   });
 });
@@ -302,7 +302,7 @@ router.delete("/case_orders/:id", (req, res) => {
 router.get("/appointment_form", (req, res) => {
   const sql = "SELECT * FROM appointment_form ORDER BY id DESC";
   db.query(sql, (err, result) => {
-    if (err) return res.status(500).json({ error: err.sqlMessage || err });
+    if (err || !result || result.length === 0) return res.json([]);
     res.json(result);
   });
 });
