@@ -4,10 +4,8 @@ export const API_BASE_URL = (
 ).replace(/\/+$/, "");
 
 /**
- * Formats image URLs whether they come as:
- * - Full URL: "https://example.com/pic.jpg"
- * - Stored path: "images/123.jpg"
- * - Prefix path: "backend/images/123.jpg" or "/images/123.jpg"
+ * Formats image URLs:
+ * Since images are bundled in public/images, they are served directly by Vercel CDN at lightning speed.
  */
 export const getImageUrl = (path, fallback = "") => {
   if (!path) return fallback;
@@ -17,11 +15,12 @@ export const getImageUrl = (path, fallback = "") => {
   if (clean.startsWith("backend/")) {
     clean = clean.substring("backend/".length);
   }
-  return `${API_BASE_URL}/${clean}`;
+  return `/${clean}`;
 };
 
 /**
- * Formats PDF URLs
+ * Formats PDF URLs:
+ * Served directly by Vercel CDN.
  */
 export const getPdfUrl = (path, fallback = "#") => {
   if (!path) return fallback;
@@ -31,5 +30,5 @@ export const getPdfUrl = (path, fallback = "#") => {
   if (clean.startsWith("backend/")) {
     clean = clean.substring("backend/".length);
   }
-  return `${API_BASE_URL}/${clean}`;
+  return `/${clean}`;
 };
