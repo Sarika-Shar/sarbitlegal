@@ -1,0 +1,74 @@
+[
+  {
+    "id": 11,
+    "Sname": "sar",
+    "Phone": "9874563210",
+    "Email": "sarikabhardwaj6@gmail.com",
+    "Cases": "Family law",
+    "Uname": "sar",
+    "Password": "sar"
+  },
+  {
+    "id": 12,
+    "Sname": "bits",
+    "Phone": "9874563210",
+    "Email": "bits@gmail.com",
+    "Cases": "Civil",
+    "Uname": "bits",
+    "Password": "bits"
+  },
+  {
+    "id": 13,
+    "Sname": "anuj",
+    "Phone": "987987445621",
+    "Email": "anu@gmail.com",
+    "Cases": "Family law",
+    "Uname": "anu",
+    "Password": "anu"
+  },
+  {
+    "id": 15,
+    "Sname": "ss",
+    "Phone": "9874632100",
+    "Email": "ss@gmail.com",
+    "Cases": "Civil",
+    "Uname": "ss",
+    "Password": "ss"
+  },
+  {
+    "id": 16,
+    "Sname": "bb",
+    "Phone": "9874652330",
+    "Email": "bb@gmail.com",
+    "Cases": "bb",
+    "Uname": "bb",
+    "Password": "bb"
+  },
+  {
+    "id": 17,
+    "Sname": "qq",
+    "Phone": "98744665223",
+    "Email": "qq@gmail.com",
+    "Cases": "Criminal",
+    "Uname": "qq",
+    "Password": "qq"
+  },
+  {
+    "id": 33,
+    "Sname": "sarika",
+    "Phone": "9874563210",
+    "Email": "sarika@gmail.com",
+    "Cases": "Family law",
+    "Uname": "xx",
+    "Password": "xx"
+  },
+  {
+    "id": 34,
+    "Sname": "priya",
+    "Phone": "7896541230",
+    "Email": "priya@gmail.com",
+    "Cases": "Business",
+    "Uname": "priya",
+    "Password": "priya"
+  }
+]

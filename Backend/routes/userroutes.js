@@ -9,6 +9,26 @@ const fallbackCategories = require("../data/category.json");
 const fallbackTeam = require("../data/team_members.json");
 const fallbackOrders = require("../data/case_orders.json");
 
+const usersFilePath = path.join(__dirname, "../data/users.json");
+const getFallbackUsers = () => {
+  try {
+    if (fs.existsSync(usersFilePath)) {
+      return JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    }
+  } catch (e) {
+    console.error('Error reading users.json fallback:', e);
+  }
+  return [];
+};
+
+const saveFallbackUsers = (users) => {
+  try {
+    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2), 'utf8');
+  } catch (e) {
+    console.error('Error writing users.json fallback:', e);
+  }
+};
+
 // Ensure upload directories exist
 const imagesDir = path.join(__dirname, "../images");
 const pdfsDir = path.join(__dirname, "../pdfs");
@@ -39,10 +59,43 @@ router.post("/registration/add", (req, res) => {
         return res.status(400).json({ message: "Please fill all required fields (Name, Phone, Email, Username, Password)." });
     }
 
+    const cleanSname = String(Sname).trim();
+    const cleanPhone = String(Phone).trim();
+    const cleanEmail = String(Email).trim();
+    const cleanCases = Cases ? String(Cases).trim() : "";
+    const cleanUname = String(Uname).trim();
+    const cleanPassword = String(Password);
+
+    const fallbackRegister = () => {
+        const users = getFallbackUsers();
+        if (users.some(u => (u.Email && u.Email.toLowerCase() === cleanEmail.toLowerCase()))) {
+            return res.status(400).json({ message: "This Email is already registered. Please use another email." });
+        }
+        if (users.some(u => (u.Uname && u.Uname.toLowerCase() === cleanUname.toLowerCase()))) {
+            return res.status(400).json({ message: "This Username is already taken. Please choose another username." });
+        }
+        const newId = users.length > 0 ? Math.max(...users.map(u => u.id || 0)) + 1 : 1;
+        const newUser = {
+            id: newId,
+            Sname: cleanSname,
+            Phone: cleanPhone,
+            Email: cleanEmail,
+            Cases: cleanCases,
+            Uname: cleanUname,
+            Password: cleanPassword
+        };
+        users.push(newUser);
+        saveFallbackUsers(users);
+        return res.status(201).json({
+            message: "User Added Successfully",
+            userId: newId,
+        });
+    };
+
     const sql = "INSERT INTO registration SET ?";
-    db.query(sql, { Sname, Phone, Email, Cases: Cases || "", Uname, Password }, (err, result) => {
+    db.query(sql, { Sname: cleanSname, Phone: cleanPhone, Email: cleanEmail, Cases: cleanCases, Uname: cleanUname, Password: cleanPassword }, (err, result) => {
         if (err) {
-            console.error("Registration error:", err);
+            console.error("Registration error:", err.message || err);
             if (err.code === "ER_DUP_ENTRY") {
                 const msg = err.sqlMessage || "";
                 if (msg.toLowerCase().includes("email")) {
@@ -53,7 +106,7 @@ router.post("/registration/add", (req, res) => {
                 }
                 return res.status(400).json({ message: "Username or Email is already registered." });
             }
-            return res.status(500).json({ message: err.sqlMessage || "Database error occurred." });
+            return fallbackRegister();
         }
 
         res.status(201).json({
@@ -63,15 +116,15 @@ router.post("/registration/add", (req, res) => {
     });
 });
 // ✅ GET USER BY ID
-router.get("/registration/:id", (req, res) => 
-  {
+router.get("/registration/:id", (req, res) => {
+  const targetId = Number(req.params.id);
   const sql = "SELECT * FROM registration WHERE id = ?";
 
   db.query(sql, [req.params.id], (err, result) => {
-    if (err) return res.status(500).json(err);
-
-    if (result.length === 0) 
-      {
+    if (err || !result || result.length === 0) {
+      const users = getFallbackUsers();
+      const found = users.find(u => Number(u.id) === targetId);
+      if (found) return res.json(found);
       return res.status(404).json({ message: "User not found" });
     }
 
@@ -80,24 +133,48 @@ router.get("/registration/:id", (req, res) =>
 });
  
 // ✅ LOGIN
-router.post("/login", (req, res) => 
-  {
+router.post("/login", (req, res) => {
   const { Uname, Password } = req.body;
 
-  const sql = "SELECT * FROM registration WHERE Uname = ? AND Password = ?";
+  if (!Uname || !Password) {
+    return res.status(400).json({ message: "Username and Password are required." });
+  }
 
-  db.query(sql, [Uname, Password], (err, result) =>
-     {
-    if (err) return res.status(500).json({ message: "Server error" });
+  const cleanUname = String(Uname).trim();
+  const cleanPassword = String(Password);
 
-    if (result.length > 0) 
-      {
-      res.json(
-        {
+  const fallbackLogin = () => {
+    const users = getFallbackUsers();
+    const found = users.find(u => 
+      u.Uname && u.Uname.trim().toLowerCase() === cleanUname.toLowerCase() && 
+      String(u.Password) === cleanPassword
+    );
+    if (found) {
+      return res.json({ userId: found.id, message: "Login successful" });
+    }
+    return res.status(401).json({ message: "Invalid username or password" });
+  };
+
+  const sql = "SELECT * FROM registration WHERE TRIM(Uname) = ? AND Password = ?";
+  db.query(sql, [cleanUname, cleanPassword], (err, result) => {
+    if (err) {
+      console.warn("DB login error, falling back to JSON:", err.message || err);
+      return fallbackLogin();
+    }
+
+    if (result && result.length > 0) {
+      res.json({
         userId: result[0].id,
+        message: "Login successful"
       });
-    } else 
-      {
+    } else {
+      const fallbackCheck = getFallbackUsers().find(u => 
+        u.Uname && u.Uname.trim().toLowerCase() === cleanUname.toLowerCase() && 
+        String(u.Password) === cleanPassword
+      );
+      if (fallbackCheck) {
+        return res.json({ userId: fallbackCheck.id, message: "Login successful" });
+      }
       res.status(401).json({ message: "Invalid username or password" });
     }
   });
