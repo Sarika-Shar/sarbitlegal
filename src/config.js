@@ -1,7 +1,23 @@
 // Central API and Media URL configuration
-export const API_BASE_URL = (
-  import.meta.env.VITE_API_URL || "http://localhost:5000"
-).replace(/\/+$/, "");
+const isBrowser = typeof window !== "undefined";
+const isLocalhost =
+  isBrowser &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "::1");
+
+const resolveApiUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  // If running locally in browser and envUrl points to onrender or is empty, use localhost:5000
+  if (isLocalhost) {
+    if (!envUrl || envUrl.includes("onrender.com")) {
+      return "http://localhost:5000";
+    }
+  }
+  return envUrl || "http://localhost:5000";
+};
+
+export const API_BASE_URL = resolveApiUrl().replace(/\/+$/, "");
 
 /**
  * Formats image URLs:

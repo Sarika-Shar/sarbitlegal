@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -30,8 +29,17 @@ function Register({ loadData }) {
     setLoading(true);
     setAlertInfo({ type: "", message: "" });
 
+    const payload = {
+      Sname: register.Sname.trim(),
+      Phone: register.Phone.trim(),
+      Email: register.Email.trim(),
+      Cases: register.Cases.trim(),
+      Uname: register.Uname.trim(),
+      Password: register.Password
+    };
+
     axios
-      .post(`${API_BASE_URL}/sarbit/registration/add`, register)
+      .post(`${API_BASE_URL}/sarbit/registration/add`, payload, { timeout: 10000 })
       .then((res) => {
         setLoading(false);
         const successText = res.data?.message || "Registration Successful!";
@@ -39,7 +47,6 @@ function Register({ loadData }) {
           type: "success",
           message: `${successText} Redirecting to login...`
         });
-        alert(successText);
 
         handleClear();
 
@@ -58,6 +65,8 @@ function Register({ loadData }) {
         let errorMessage = "Error submitting registration form.";
         if (error.response && error.response.data && error.response.data.message) {
           errorMessage = error.response.data.message;
+        } else if (error.code === "ECONNABORTED" || error.message?.includes("timeout")) {
+          errorMessage = "Request timed out. Please verify that the backend server is running on port 5000.";
         } else if (error.message === "Network Error" || error.code === "ERR_NETWORK") {
           errorMessage = "Cannot connect to server. Please ensure the backend server is running on port 5000.";
         }
@@ -66,7 +75,6 @@ function Register({ loadData }) {
           type: "danger",
           message: errorMessage
         });
-        alert(errorMessage);
       });
   };
 
