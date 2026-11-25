@@ -7,14 +7,17 @@ const isLocalhost =
     window.location.hostname === "::1");
 
 const resolveApiUrl = () => {
-  const envUrl = import.meta.env.VITE_API_URL;
-  // If running locally in browser and envUrl points to onrender or is empty, use localhost:5000
+  // If running locally in browser, connect to local backend on port 5000
   if (isLocalhost) {
-    if (!envUrl || envUrl.includes("onrender.com")) {
-      return "http://localhost:5000";
-    }
+    return "http://localhost:5000";
   }
-  return envUrl || "http://localhost:5000";
+  // When running online (e.g. on Vercel), use same-domain relative path ("")
+  // which is handled directly by vercel.json serverless API
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl || envUrl.includes("onrender.com")) {
+    return "";
+  }
+  return envUrl;
 };
 
 export const API_BASE_URL = resolveApiUrl().replace(/\/+$/, "");
